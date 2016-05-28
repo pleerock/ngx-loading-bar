@@ -51,5 +51,8 @@
     "typescript": "^1.8.2",
     "typings": "^1.0.4",
     "zone.js": "^0.6.12"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/.bin/typings install"
   }
 }
