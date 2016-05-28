@@ -1,0 +1,55 @@
+{
+  "name": "ng2-loading-bar",
+  "version": "0.0.1",
+  "description": "Simple loading bar on the top of the page to indicate page loading process.",
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "private": true,
+  "author": {
+    "name": "Umed Khudoiberdiev",
+    "email": "pleerock.me@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pleerock/ng2-loading-bar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pleerock/ng2-loading-bar/issues"
+  },
+  "tags": [
+    "loading-bar",
+    "angular2",
+    "typescript",
+    "angular2-loading-bar"
+  ],
+  "dependencies": {
+    "@angular/core": "2.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@angular/common": "^2.0.0-rc.1",
+    "@angular/compiler": "^2.0.0-rc.1",
+    "@angular/platform-browser": "^2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.1",
+    "bootstrap": "^3.3.6",
+    "chai": "^3.4.1",
+    "del": "^2.2.0",
+    "es6-shim": "^0.35.1",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-shell": "^0.5.1",
+    "gulp-tslint": "^5.0.0",
+    "gulpclass": "^0.1.1",
+    "mocha": "^2.5.3",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.6",
+    "sinon": "^1.17.2",
+    "sinon-chai": "^2.8.0",
+    "systemjs": "0.19.29",
+    "tslint": "^3.10.2",
+    "tslint-stylish": "^2.1.0-beta",
+    "typescript": "^1.8.2",
+    "typings": "^1.0.4",
+    "zone.js": "^0.6.12"
+  }
+}
