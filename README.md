@@ -5,21 +5,21 @@ Simple loading bar on the top of your page to indicate page loading loading.
 ## Installation
 
 1. Install npm module:
-
-`npm install ng2-loading-bar --save`
+    
+    `npm install ng2-loading-bar --save`
 
 2. If you are using system.js you may want to add this into `map` and `package` config:
-
-```json
-{
-    "map": {
-        "ng2-loading-bar": "node_modules/ng2-loading-bar"
-    },
-    "packages": {
-        "ng2-loading-bar": { "main": "index.js", "defaultExtension": "js" }
+    
+    ```json
+    {
+        "map": {
+            "ng2-loading-bar": "node_modules/ng2-loading-bar"
+        },
+        "packages": {
+            "ng2-loading-bar": { "main": "index.js", "defaultExtension": "js" }
+        }
     }
-}
-```
+    ```
 ## Usage
 
 Put loading bar component to the top of your page, most probably near the main header.
