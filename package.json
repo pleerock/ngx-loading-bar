@@ -2,7 +2,7 @@
   "name": "ng2-loading-bar",
   "version": "0.0.1",
   "description": "Simple loading bar on the top of the page to indicate page loading process.",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "private": true,
   "author": {
