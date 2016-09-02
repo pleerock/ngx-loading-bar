@@ -22,7 +22,7 @@ Simple loading bar on the top of your page to indicate page loading loading.
     ```
 ## Usage
 
-Put loading bar component to the top of your page, most probably near the main header.
+Import `LoadingBarModule` and put loading bar component to the top of your page, most probably near the main header.
 
 ```typescript
 <loading-bar color="#FF0000" [height]="3" [animationTime]="0.3" [runInterval]="100" [progress]="0"></loading-bar>
@@ -39,9 +39,8 @@ You can also use `LoadingBarService` service to control your loading bar progres
 ## Sample
 
 ```typescript
-import {bootstrap} from "@angular/platform-browser-dynamic";
 import {Component} from "@angular/core";
-import {LoadingBar, LoadingBarService} from "ng2-loading-bar";
+import {LoadingBarModule, LoadingBarService} from "ng2-loading-bar";
 
 @Component({
     selector: "app",
@@ -68,9 +67,7 @@ import {LoadingBar, LoadingBarService} from "ng2-loading-bar";
     <button (click)="emitComplete()">dispatch complete event using service</button>
 
 </div>
-`,
-    directives: [LoadingBar],
-    providers: [LoadingBarService]
+`
 })
 export class Sample1App  {
 
@@ -96,6 +93,22 @@ export class Sample1App  {
     emitComplete() {
         this.loadingBarService.complete();
     }
+
+}
+
+@NgModule({
+    imports: [
+        // ...
+        LoadingBarModule
+    ],
+    declarations: [
+        App
+    ],
+    bootstrap: [
+        App
+    ]
+})
+export class AppModule {
 
 }
 ```

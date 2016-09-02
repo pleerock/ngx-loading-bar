@@ -1,6 +1,9 @@
-import {bootstrap} from "@angular/platform-browser-dynamic";
-import {Component} from "@angular/core";
-import {LoadingBar, LoadingBarService} from "../../src/index";
+import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
+import {Component, NgModule} from "@angular/core";
+import {LoadingBarService, LoadingBarModule} from "../../src/index";
+import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: "app",
@@ -27,9 +30,7 @@ import {LoadingBar, LoadingBarService} from "../../src/index";
     <button (click)="emitComplete()">dispatch complete event using service</button>
     
 </div>
-`,
-    directives: [LoadingBar],
-    providers: [LoadingBarService]
+`
 })
 export class Sample1App  {
 
@@ -58,4 +59,22 @@ export class Sample1App  {
 
 }
 
-bootstrap(Sample1App);
+@NgModule({
+    imports: [
+        CommonModule,
+        FormsModule,
+        BrowserModule,
+        LoadingBarModule
+    ],
+    declarations: [
+        Sample1App
+    ],
+    bootstrap: [
+        Sample1App
+    ]
+})
+export class Sample1Module {
+
+}
+
+platformBrowserDynamic().bootstrapModule(Sample1Module);
