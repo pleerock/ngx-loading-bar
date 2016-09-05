@@ -1,6 +1,6 @@
 {
   "name": "ng2-loading-bar",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple loading bar on the top of the page to indicate page loading process.",
   "license": "MIT",
   "readmeFilename": "README.md",
@@ -53,8 +53,5 @@
     "typescript": "^1.8.2",
     "typings": "^1.0.4",
     "zone.js": "^0.6.17"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/.bin/typings install"
   }
 }
