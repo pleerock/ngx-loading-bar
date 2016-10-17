@@ -1,6 +1,6 @@
 {
   "name": "ng2-loading-bar",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple loading bar on the top of the page to indicate page loading process.",
   "license": "MIT",
   "readmeFilename": "README.md",
@@ -23,15 +23,15 @@
     "angular2-loading-bar"
   ],
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc.6"
+    "@angular/core": "^2.0.0"
   },
   "devDependencies": {
-    "@angular/core": "^2.0.0-rc.6",
-    "@angular/forms": "^2.0.0-rc.6",
-    "@angular/common": "^2.0.0-rc.6",
-    "@angular/compiler": "^2.0.0-rc.6",
-    "@angular/platform-browser": "^2.0.0-rc.6",
-    "@angular/platform-browser-dynamic": "^2.0.0-rc.6",
+    "@angular/core": "^2.0.1",
+    "@angular/forms": "^2.0.1",
+    "@angular/common": "^2.0.1",
+    "@angular/compiler": "^2.0.1",
+    "@angular/platform-browser": "^2.0.1",
+    "@angular/platform-browser-dynamic": "^2.0.1",
     "bootstrap": "^3.3.6",
     "chai": "^3.4.1",
     "del": "^2.2.0",
@@ -43,8 +43,8 @@
     "gulp-tslint": "^5.0.0",
     "gulpclass": "^0.1.1",
     "mocha": "^2.5.3",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.11",
+    "reflect-metadata": "0.1.8",
+    "rxjs": "5.0.0-beta.12",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0",
     "systemjs": "0.19.29",
@@ -52,6 +52,6 @@
     "tslint-stylish": "^2.1.0-beta",
     "typescript": "^1.8.2",
     "typings": "^1.0.4",
-    "zone.js": "^0.6.17"
+    "zone.js": "^0.6.25"
   }
 }
