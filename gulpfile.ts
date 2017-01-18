@@ -1,4 +1,4 @@
-import {Gulpclass, Task, SequenceTask} from "gulpclass";
+import {Gulpclass, Task, SequenceTask, MergedTask} from "gulpclass";
 
 const gulp = require("gulp");
 const del = require("del");
@@ -46,35 +46,52 @@ export class Gulpfile {
     // -------------------------------------------------------------------------
 
     /**
-     * Compiles an amd bundle.
+     * Compiles and compiles bundles.
      */
-    @Task()
-    compileAmd() {
-        const tsProject = ts.createProject("tsconfig.json", {
+    @MergedTask()
+    compileBundles() {
+        const amdTsProject = ts.createProject("tsconfig.json", {
             module: "amd",
             outFile: packageName + ".amd.js",
             typescript: require("typescript")
         });
-        const tsResult = gulp.src("build/bundle/**/*.ts")
-            .pipe(tsProject());
-
-        return tsResult.js.pipe(gulp.dest("build/package"));
-    }
-
-    /**
-     * Compiles a systemjs bundle.
-     */
-    @Task()
-    compileSystem() {
-        const tsProject = ts.createProject("tsconfig.json", {
+        const systemTsProject = ts.createProject("tsconfig.json", {
             module: "system",
             outFile: packageName + ".system.js",
             typescript: require("typescript")
         });
-        const tsResult = gulp.src("build/bundle/**/*.ts")
-            .pipe(tsProject());
+        const amdPureTsProject = ts.createProject("tsconfig.json", {
+            module: "amd",
+            outFile: packageName + ".pure.amd.js",
+            noEmitHelpers: true,
+            noImplicitUseStrict: true,
+            typescript: require("typescript")
+        });
+        const systemPureTsProject = ts.createProject("tsconfig.json", {
+            module: "system",
+            outFile: packageName + ".pure.system.js",
+            noEmitHelpers: true,
+            noImplicitUseStrict: true,
+            typescript: require("typescript")
+        });
 
-        return tsResult.js.pipe(gulp.dest("build/package"));
+        return [
+            gulp.src("build/bundle/**/*.ts")
+                .pipe(amdTsProject()).js
+                .pipe(gulp.dest("build/package")),
+            
+            gulp.src("build/bundle/**/*.ts")
+                .pipe(systemTsProject()).js
+                .pipe(gulp.dest("build/package")),
+
+            gulp.src("build/bundle/**/*.ts")
+                .pipe(amdPureTsProject()).js
+                .pipe(gulp.dest("build/package")),
+            
+            gulp.src("build/bundle/**/*.ts")
+                .pipe(systemPureTsProject()).js
+                .pipe(gulp.dest("build/package"))
+        ];
     }
 
     /**
@@ -90,32 +107,38 @@ export class Gulpfile {
      * Creates special main file for bundle build.
      */
     @Task()
-    bundleCopyMainBrowserFile() {
+    bundleCopyMainFile() {
         return gulp.src("./package.json", { read: false })
             .pipe(file(packageName + ".ts", `export * from "./${packageName}/index";`))
             .pipe(gulp.dest("./build/bundle"));
     }
 
     /**
-     * Uglifys system bundle.
+     * Uglifys bundles.
      */
-    @Task()
-    bundleUglifySystem() {
-        return gulp.src(`./build/package/${packageName}.system.js`)
-            .pipe(uglify())
-            .pipe(rename(`${packageName}.system.min.js`))
-            .pipe(gulp.dest("./build/package"));
-    }
+    @MergedTask()
+    uglify() {
+        return [
+            gulp.src(`./build/package/${packageName}.pure.amd.js`)
+                .pipe(uglify())
+                .pipe(rename(`${packageName}.pure.amd.min.js`))
+                .pipe(gulp.dest("./build/package")),
 
-    /**
-     * Uglifys amd bundle.
-     */
-    @Task()
-    bundleUglifyAmd() {
-        return gulp.src(`./build/package/${packageName}.amd.js`)
-            .pipe(uglify())
-            .pipe(rename(`${packageName}.amd.min.js`))
-            .pipe(gulp.dest("./build/package"));
+            gulp.src(`./build/package/${packageName}.pure.system.js`)
+                .pipe(uglify())
+                .pipe(rename(`${packageName}.pure.system.min.js`))
+                .pipe(gulp.dest("./build/package")),
+
+            gulp.src(`./build/package/${packageName}.amd.js`)
+                .pipe(uglify())
+                .pipe(rename(`${packageName}.amd.min.js`))
+                .pipe(gulp.dest("./build/package")),
+
+            gulp.src(`./build/package/${packageName}.system.js`)
+                .pipe(uglify())
+                .pipe(rename(`${packageName}.system.min.js`))
+                .pipe(gulp.dest("./build/package")),
+        ];
     }
 
     /**
@@ -157,9 +180,10 @@ export class Gulpfile {
     package() {
         return [
             "clean",
-            ["bundleCopySources", "bundleCopyMainBrowserFile"],
-            ["compile", "compileAmd", "compileSystem"],
-            ["bundleUglifySystem", "bundleUglifyAmd", "packagePreparePackageFile", "packageReadmeFile"]
+            ["bundleCopySources", "bundleCopyMainFile"],
+            ["compile", "compileBundles"],
+            ["uglify"],
+            ["packagePreparePackageFile", "packageReadmeFile"]
         ];
     }
 

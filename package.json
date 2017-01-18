@@ -1,6 +1,6 @@
 {
   "name": "ngx-loading-bar",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Simple loading bar on the top of the page to indicate page loading process.",
   "license": "MIT",
   "readmeFilename": "README.md",
@@ -46,6 +46,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-shell": "^0.5.1",
     "gulp-tslint": "^7.0.1",
+    "gulp-typescript": "^3.1.4",
     "gulp-uglify": "^2.0.0",
     "gulpclass": "^0.1.1",
     "mocha": "^3.2.0",
