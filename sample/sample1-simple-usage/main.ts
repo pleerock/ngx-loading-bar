@@ -1,9 +1,9 @@
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import {Component, NgModule} from "@angular/core";
-import {LoadingBarService, LoadingBarModule} from "../../src/index";
 import {BrowserModule} from "@angular/platform-browser";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {LoadingBarService, LoadingBarModule} from "ngx-loading-bar";
 
 @Component({
     selector: "app",
