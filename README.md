@@ -1,3 +1,5 @@
+> This repository is for demonstration purposes of how it can be implemented in Angular and is not maintaned. Please fork and maintain your own version of this repository.
+
 # ng2-loading-bar
 
 Simple loading bar on the top of your page to indicate page loading loading.
